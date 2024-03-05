@@ -1,0 +1,22 @@
+﻿<Window x:Class="AudioPlaer.HistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="History" Height="300" Width="400">
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Foreground" Value="Purple"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <ListView Name="historyListView" Margin="50" Grid.Row="0" Background="#FF721488" BorderBrush="#898C2E2E">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Track Name" Width="100" DisplayMemberBinding="{Binding}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Close" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Click="CloseButton_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,114 @@
+﻿<Window x:Class="AudioPlaer.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Audio Player" Height="590" Width="1000"
+        Background="DimGray">
+
+
+    <Grid Cursor="">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1569*"/>
+            <RowDefinition Height="121*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="603*"/>
+            <ColumnDefinition Width="339*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="CurrentSongName" Foreground="White" FontFamily="Tahoma" Margin="114,85,273,55" Width="215" Grid.Column="1">
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetName="CurrentSongName" 
+                                Storyboard.TargetProperty="(TextBlock.Width)"
+                                To="0.0" Duration="0:0:5" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
+
+
+        <Image x:Name="CurrentSongImage" Margin="-16,0,-20,0" Source="/supra.jpg" Grid.ColumnSpan="3" Grid.RowSpan="2" RenderTransformOrigin="0.486,0.501" Stretch="UniformToFill"/>
+
+        <Slider x:Name="VolumeSlider" Margin="22,10,380,126" ValueChanged="VolumeSlider_ValueChanged" Foreground="Black" Grid.Column="1"/>
+
+        <Slider x:Name="SongPositionSlider" IsMoveToPointEnabled="True" TickFrequency="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="55,0,55,20" ValueChanged="SongPositionSlider_ValueChanged" Foreground="black"/>
+
+        <Image x:Name="VolumeIcon" Margin="0,-7,0,0" Source="/volume.png" RenderTransformOrigin="1.705,0.517" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Height="70"/>
+
+        <TextBlock x:Name="SongTime" 
+           HorizontalAlignment="Right" 
+           VerticalAlignment="Bottom" 
+           Margin="-40,-20,-30,20"  
+           Foreground="Red" 
+           FontSize="16"/>
+
+        <Button x:Name="Play_Button" Click="Play_Button_Click"  Style="{StaticResource MaterialDesignIconButton}"  Margin="405,421,157,72"  Width="40" Height="40" Foreground="black" Grid.Column="1" Cursor="Hand">
+            <materialDesign:PackIcon  Kind="Play"  Height="40"  Width="65" VerticalAlignment="Stretch" HorizontalAlignment="Center" RenderTransformOrigin="0.487,0.723"/>
+        </Button>
+
+        <Button x:Name="HistoryButton" Click="HistoryButton_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="102,227,169,246" Height="30" Foreground="Red" Grid.Column="2" RenderTransformOrigin="0.5,0.5" Cursor="Hand">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <materialDesign:PackIcon Kind="History" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="Stop_Button" Click="Stop_Button_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="350,426,222,77" Width="30" Height="30" Foreground="black" Grid.Column="1">
+            <materialDesign:PackIcon Kind="Stop" Height="25" Width="25" VerticalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="PreviousSong_Button" Click="PreviousSong_Button_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="290,426,282,77" Width="30" Height="30" Foreground="black" Grid.Column="1">
+            <materialDesign:PackIcon Kind="SkipPrevious" Height="25"  Width="25" VerticalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="FolderOpen_Button"
+            Click="FolderOpen_Button_Click"
+            Style="{StaticResource MaterialDesignIconButton}"
+            Grid.Column="2" Margin="275,421,24,72"
+            Width="40" Height="40" Foreground="Black">
+            <materialDesign:PackIcon
+                Kind="Plus"
+                Height="40"
+                Width="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="Pause_Button" Click="Pause_Button_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="470,426,102,77" Width="30" Height="30" Foreground="black" Grid.Column="1">
+            <materialDesign:PackIcon Kind="Pause" Height="25" Width="25" VerticalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="NextSong_Button" Click="NextSong_Button_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="530,426,42,77"  Width="30" Height="30" Foreground="black" Grid.Column="1">
+            <materialDesign:PackIcon Kind="SkipNext" Height="25"  Width="25" VerticalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="Loop_Button" Click="Loop_Button_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="589,431,332,82" Width="20" Height="20" Foreground="black" Grid.Column="1" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon  Kind="Loop" Height="15"  Width="15" VerticalAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="Random_Button" Click="Random_Button_Click" Style="{StaticResource MaterialDesignIconButton}" Margin="248,431,334,82" Width="20" Height="20" Foreground="black" Grid.Column="1">
+            <materialDesign:PackIcon Kind="Shuffle" Height="15" Width="15" VerticalAlignment="Center"/>
+        </Button>
+
+        <ListBox x:Name="songList"
+         Margin="170,0,-4,342"
+         SelectionChanged="SongList_SelectionChanged"
+         Foreground="Black"
+          Grid.Column="2"/>
+
+        <MediaElement x:Name="mediaElement" Margin="0,0,0,20" Grid.Row="1" LoadedBehavior="Manual" MediaOpened="mediaElement_MediaOpened" MediaEnded="mediaElement_MediaEnded" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
